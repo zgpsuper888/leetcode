@@ -60,4 +60,24 @@ public static void main(String dd[]){
         }
         return res;
     }
+    public static List<List<Integer>> generate_best(int numRows) {
+        int[][] pascal=new int[numRows][];
+        for(int i=0;i<numRows;i++){
+            pascal[i]=new int[i+1];
+            if(i==0){
+                pascal[i][0]=1;
+            }else{
+                for(int j=0;j<i+1;j++){
+                    if(j==0||j==i){
+                        pascal[i][j]=1;
+                    }else{
+                        pascal[i][j]=pascal[i-1][j-1]+pascal[i-1][j];
+                    }
+                }
+            }
+
+        }
+        List list = java.util.Arrays.asList(pascal);
+        return list;
+    }
 }
