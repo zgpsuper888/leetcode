@@ -97,4 +97,39 @@ public class LeetCode25 {
             val = x;
         }
     }
+
+    public ListNode reverseKGroup_best(ListNode head, int k) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode node = dummy;
+        return help(dummy,k);
+    }
+    public ListNode help(ListNode dummy, int k){
+        ListNode start = dummy;
+        while(start != null){
+            start = reverse(start,k);
+        }
+        return dummy.next;
+    }
+    public ListNode reverse(ListNode head, int k){
+        ListNode node = head.next;
+        if(node == null){
+            return node;
+        }
+        int a = k;
+        while(a-- > 1){
+            if(node.next == null){
+                return null;
+            }
+            node = node.next;
+        }
+        node = head.next;
+        while(k-- > 1){
+            ListNode next = node.next;
+            node.next = next.next;
+            next.next = head.next;
+            head.next = next;
+        }
+        return node;
+    }
 }
